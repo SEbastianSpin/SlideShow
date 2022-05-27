@@ -1,0 +1,148 @@
+﻿<Window x:Class="SlideShow.MainWindow"
+         
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" MaxHeight="600" MaxWidth="800"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SlideShow"
+        
+        mc:Ignorable="d"
+         MinHeight="600"
+        MinWidth="800"
+        Title="Images Slide Show Sample App" Height="600" Width="800"
+       Loaded ="Window_Loaded"
+         WindowStartupLocation="CenterScreen"
+       
+        >
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+
+            <ColumnDefinition Width="400"></ColumnDefinition>
+
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto">
+
+            </RowDefinition>
+            <RowDefinition Height="*" />
+
+
+        </Grid.RowDefinitions>
+
+
+
+
+        <Menu Width="Auto" Name="menu1" VerticalAlignment="Center" DockPanel.Dock="Left"  Background="Gray" Padding="5 5 5 5" Grid.ColumnSpan="2" Margin="0,0,-200,0">
+            <MenuItem Header="File"  FontSize="12">
+                <MenuItem Header="Open Folder" Name="openDIR" Click="openDIR_Click"/>
+                <MenuItem Header="Exit" Name="exit" Click="close_Click"/>
+            </MenuItem>
+            <MenuItem Header="Start Slideshow">
+                
+            </MenuItem>
+            <MenuItem Header="About"   FontSize="12" Click="MenuItem_Click">
+            </MenuItem>
+        </Menu>
+
+
+
+        <Border Background="GhostWhite" BorderBrush="black" BorderThickness="1" Grid.Row="1" Margin="0,1,5,10">
+            <ScrollViewer>
+                <StackPanel>
+               
+                
+                <Expander Name="ExpanderControl" Header="Expand"   
+                HorizontalAlignment="Left" Width="184" >
+
+                    <TreeView Name="Solution">
+                       
+                            
+                            
+                       
+
+
+                    </TreeView>
+                   
+
+                </Expander>
+
+                <Expander Header="File info" Name="fileI" >
+
+                        <StackPanel>
+                            <TextBlock  Name="fileInf" TextWrapping="Wrap" Text="No file was selected" HorizontalAlignment="Left" VerticalAlignment="Center" Background="LightGray"/>
+                            <Border Name="Imgdata" Visibility="Hidden" Background="GhostWhite" BorderBrush="black" BorderThickness="1" Margin="4">
+                            <Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1cm" > </RowDefinition>
+                                        <RowDefinition Height="1cm"></RowDefinition>
+                                        <RowDefinition Height="1cm"></RowDefinition>
+                                        <RowDefinition Height="1cm"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock>
+                                   
+                                    <Run FontWeight="Bold" Text="File Name"></Run> 
+                                     
+                                </TextBlock>
+                                <TextBlock Name="fileName" Text="ddd"  Grid.Column="1"></TextBlock>
+
+                                <TextBlock Grid.Row="1">
+                                   
+                                    <Run FontWeight="Bold" Text="Width" ></Run>
+
+                                </TextBlock>
+
+                                <TextBlock Name="fileWi" Text="ddd"  Grid.Column="1" Grid.Row="1"></TextBlock>
+
+                                <TextBlock Grid.Row="2">
+                                   
+                                    <Run FontWeight="Bold" Text="Height" ></Run>
+
+                                </TextBlock>
+                                <TextBlock Name="fileH" Text="ddd"  Grid.Column="1" Grid.Row="2"></TextBlock>
+
+                                <TextBlock Grid.Row="3">
+                                   
+                                    <Run FontWeight="Bold" Text="size" ></Run>
+
+                                </TextBlock>
+                                <TextBlock Name="fileSize" Text="ddd"  Grid.Column="1" Grid.Row="3"></TextBlock>
+
+
+                            </Grid>
+                            </Border>
+
+                        </StackPanel>     
+                            
+
+
+                        
+
+                   </Expander>
+              
+            </StackPanel>
+            </ScrollViewer>
+
+
+
+        </Border>
+        
+
+        <Border Background="GhostWhite" BorderBrush="black" BorderThickness="1" Grid.Row="1" Margin="10,5,-190,5" Grid.Column="1">
+            <ScrollViewer >
+                <WrapPanel Height="529" Margin="10,10,10,10" Name="imgPanel">
+
+                </WrapPanel>
+            </ScrollViewer>
+                
+        </Border>
+
+    </Grid>
+</Window>
