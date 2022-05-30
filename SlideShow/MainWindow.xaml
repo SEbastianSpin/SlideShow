@@ -12,8 +12,23 @@
         Title="Images Slide Show Sample App" Height="600" Width="800"
        Loaded ="Window_Loaded"
          WindowStartupLocation="CenterScreen"
+        
        
-        >
+
+
+    >
+    <Window.Resources>
+        <!-- Having CommandParameter is crucial here -->
+        <ContextMenu x:Key="contextMenu">
+            <MenuItem Header="View"
+                      Click="closeModal_Click">
+
+            </MenuItem>
+
+
+        </ContextMenu>
+    </Window.Resources>
+
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -41,7 +56,9 @@
                 <MenuItem Header="Exit" Name="exit" Click="close_Click"/>
             </MenuItem>
             <MenuItem Header="Start Slideshow">
-                
+                <MenuItem Header="Vertical"   FontSize="12" Click="setVertical"/>
+                <MenuItem Header="Horizontal"   FontSize="12" Click="setHorizontal"/>
+                <MenuItem Header="Opacity"   FontSize="12" Click="setOpacity"/>
             </MenuItem>
             <MenuItem Header="About"   FontSize="12" Click="MenuItem_Click">
             </MenuItem>
@@ -52,96 +69,115 @@
         <Border Background="GhostWhite" BorderBrush="black" BorderThickness="1" Grid.Row="1" Margin="0,1,5,10">
             <ScrollViewer>
                 <StackPanel>
-               
-                
-                <Expander Name="ExpanderControl" Header="Expand"   
+
+
+                    <Expander Name="ExpanderControl" Header="Expand"   
                 HorizontalAlignment="Left" Width="184" >
 
-                    <TreeView Name="Solution">
-                       
-                            
-                            
-                       
+                        <TreeView Name="Solution">
 
 
-                    </TreeView>
-                   
 
-                </Expander>
 
-                <Expander Header="File info" Name="fileI" >
+
+
+                        </TreeView>
+
+
+                    </Expander>
+
+                    <Expander Header="File info" Name="fileI" >
 
                         <StackPanel>
-                            <TextBlock  Name="fileInf" TextWrapping="Wrap" Text="No file was selected" HorizontalAlignment="Left" VerticalAlignment="Center" Background="LightGray"/>
+                            <TextBlock Padding="4" Name="fileInf" TextWrapping="Wrap" Text="No file was selected" HorizontalAlignment="Left" Background="LightGray" Width="174" Height="24"/>
                             <Border Name="Imgdata" Visibility="Hidden" Background="GhostWhite" BorderBrush="black" BorderThickness="1" Margin="4">
-                            <Grid >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="1cm" > </RowDefinition>
+                                <Grid >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1cm" ></RowDefinition>
                                         <RowDefinition Height="1cm"></RowDefinition>
                                         <RowDefinition Height="1cm"></RowDefinition>
                                         <RowDefinition Height="1cm"></RowDefinition>
-                                </Grid.RowDefinitions>
+                                    </Grid.RowDefinitions>
 
-                                <TextBlock>
+                                    <TextBlock>
                                    
-                                    <Run FontWeight="Bold" Text="File Name"></Run> 
-                                     
-                                </TextBlock>
-                                <TextBlock Name="fileName" Text="ddd"  Grid.Column="1"></TextBlock>
+                                    <Run FontWeight="Bold" Text="File Name"></Run>
 
-                                <TextBlock Grid.Row="1">
+                                    </TextBlock>
+                                    <TextBlock Name="fileName" Text="ddd"  Grid.Column="1" HorizontalAlignment="Center"></TextBlock>
+
+                                    <TextBlock Grid.Row="1">
                                    
                                     <Run FontWeight="Bold" Text="Width" ></Run>
 
-                                </TextBlock>
+                                    </TextBlock>
 
-                                <TextBlock Name="fileWi" Text="ddd"  Grid.Column="1" Grid.Row="1"></TextBlock>
+                                    <TextBlock Name="fileWi" Text="ddd"  Grid.Column="1" Grid.Row="1"></TextBlock>
 
-                                <TextBlock Grid.Row="2">
+                                    <TextBlock Grid.Row="2">
                                    
                                     <Run FontWeight="Bold" Text="Height" ></Run>
 
-                                </TextBlock>
-                                <TextBlock Name="fileH" Text="ddd"  Grid.Column="1" Grid.Row="2"></TextBlock>
+                                    </TextBlock>
+                                    <TextBlock Name="fileH" Text="ddd"  Grid.Column="1" Grid.Row="2"></TextBlock>
 
-                                <TextBlock Grid.Row="3">
+                                    <TextBlock Grid.Row="3">
                                    
                                     <Run FontWeight="Bold" Text="size" ></Run>
 
-                                </TextBlock>
-                                <TextBlock Name="fileSize" Text="ddd"  Grid.Column="1" Grid.Row="3"></TextBlock>
+                                    </TextBlock>
+                                    <TextBlock Name="fileSize" Text="ddd"  Grid.Column="1" Grid.Row="3"></TextBlock>
 
 
-                            </Grid>
+                                </Grid>
                             </Border>
 
-                        </StackPanel>     
-                            
+                        </StackPanel>
 
 
-                        
 
-                   </Expander>
-              
-            </StackPanel>
+
+
+                    </Expander>
+                    <Expander Header="Slideshow" Cursor="Hand" >
+                        <StackPanel Margin="0 10 0 10" Background="WhiteSmoke">
+                            <Border BorderBrush="Black" BorderThickness="1">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="33"/>
+                                        <RowDefinition Height="40"/>
+                                        <RowDefinition Height="40"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row ="0" FontWeight="Bold" FontSize="13" Background="WhiteSmoke" Text="Select Slideshow Effect:" Margin="5 7 5 7" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <ComboBox Name="ComboBoxAnimations" Grid.Row="1" Margin="10 5 10 5" SelectedIndex="0" ItemsSource="{Binding}"/>
+                                    <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1" Margin="10 3 10 7">
+                                        <Button Grid.Row="2" Background="Gray" BorderThickness="0" Click="Button_Click2" Tag="{Binding ElementName=ComboBoxAnimations, Path=SelectedIndex}">Start slideshow</Button>
+
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </StackPanel>
+                    </Expander>
+
+                </StackPanel>
             </ScrollViewer>
 
 
 
         </Border>
-        
 
-        <Border Background="GhostWhite" BorderBrush="black" BorderThickness="1" Grid.Row="1" Margin="10,5,-190,5" Grid.Column="1">
-            <ScrollViewer >
+
+        <Border Background="GhostWhite" BorderBrush="black" BorderThickness="1" Grid.Row="1" Margin="10,5,-190,14" Grid.Column="1">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="-1,-1,-1,-1" >
                 <WrapPanel Height="529" Margin="10,10,10,10" Name="imgPanel">
 
                 </WrapPanel>
             </ScrollViewer>
-                
+
         </Border>
 
     </Grid>
