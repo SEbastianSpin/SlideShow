@@ -37,6 +37,7 @@ namespace SlideShow
         private  string ImageinSlide;
         private string type= "horizontal";
         public string[] ComboxItems = { "vertical", "horizontal", "opacity" };
+        //public string[] ComboxItems = new string[5];
         int imgpos = 0;
 
         private DispatcherTimer ChangeIMG;
@@ -49,7 +50,29 @@ namespace SlideShow
             ChangeIMG = new DispatcherTimer();
             ChangeIMG.Interval = new TimeSpan(0, 0, 2);
             ChangeIMG.Tick += new EventHandler(ChangeIMG_Tick);
-            Assembly assembly = Assembly.LoadFrom("");
+            //Assembly assembly = Assembly.LoadFrom("animce.dll");
+           // Console.Write(assembly.GetExportedTypes());
+           // vert);
+            //object opt = Activator.CreateInstance(assembly.GetExportedTypes()[2]);
+            //object hoz = Activator.CreateInstance(assembly.GetExportedTypes()[3]);
+            
+
+            //if ((vert as ISlideshowEffect) != null) {
+            //    var effect = vert as ISlideshowEffect;
+            //    ComboxItems[0] = effect.Name;
+            //}
+
+            //if ((opt as ISlideshowEffect) != null)
+            //{
+            //    var effect = vert as ISlideshowEffect;
+            //    ComboxItems[1] = effect.Name;
+            //}
+
+            //if ((hoz as ISlideshowEffect) != null)
+            //{
+            //    var effect = vert as ISlideshowEffect;
+            //    ComboxItems[2] = effect.Name;
+            //}
 
         }
 
@@ -343,7 +366,14 @@ namespace SlideShow
 
         private void Button_Click(object sender, RoutedEventArgs e)
 		{
-            
+            if (imagesdir == "")
+            {
+
+                MessageBox.Show("there is no images!", "Select a folder", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+
+            }
+
             var modal  = new Window()
             {
                 Title = "Modal Dialog",
@@ -368,6 +398,10 @@ namespace SlideShow
 			modal.Loaded += Modal_Loaded2;
 
             _modal = modal;
+
+           
+
+            
 			//var myDoubleAnimation = new DoubleAnimation();
 			//myDoubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(5));
 			//myDoubleAnimation.From = 0;

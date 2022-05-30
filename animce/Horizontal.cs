@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media.Animation;
-
-namespace SlideShow
+using System.Windows.Controls;
+namespace animce
 {
     internal class Horizontal : ISlideshowEffect
     {
@@ -45,4 +41,5 @@ namespace SlideShow
             Story2nd.Begin();
         }
     }
+
 }

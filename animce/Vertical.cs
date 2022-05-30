@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media.Animation;
-
-namespace SlideShow
+using System.Windows.Controls;
+namespace animce
 {
-	internal class Vertical : ISlideshowEffect
-	{
-		public string Name => "vertial";
+    internal class Vertical : ISlideshowEffect
+    {
+        public string Name => "vertical";
 
-		public void JustEffect(Image imageIn, Image imageOut)
-		{
+        public void JustEffect(Image imageIn, Image imageOut)
+        {
             Image inside = imageIn;
             // pos++;
             Storyboard Storyfisrt = new Storyboard();
@@ -36,5 +35,5 @@ namespace SlideShow
             Story2nd.Children.Add(Animation2);
             Story2nd.Begin();
         }
-	}
+    }
 }
